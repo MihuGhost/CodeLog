@@ -1,7 +1,9 @@
 package main
 
-func main() {
+import "fmt"
 
+func main() {
+	fmt.Println(max(1, 2))
 }
 
 func letterCombinations(digits string) []string {
