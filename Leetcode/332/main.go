@@ -1,24 +1,33 @@
 package main
 
-func Swap(i, j []string) {
-	i, j = j, i
-}
+import (
+	"sort"
+)
 
 func main() {
-	tickets := [][]string{
-		{"MUC", "LHR"},
-		{"MUA", "LHR"},
-		{"MUG", "LHR"},
-	}
-
-	for i := 1; i < len(tickets); i++ {
-		if tickets[i-1][0] > tickets[i][0] {
-			Swap(tickets[i-1], tickets[i])
-		}
-	}
-
 }
 
-/*func findItinerary(tickets [][]string) []string {
+func findItinerary(tickets [][]string) []string {
+	var result []string
+	targets := make(map[string][]string, 0)
 
-}*/
+	for _, ticket := range tickets {
+		targets[ticket[0]] = append(targets[ticket[0]], ticket[1])
+	}
+
+	for _, target := range targets {
+		sort.Strings(target)
+	}
+
+	var dfs func(fromAirport string)
+	dfs = func(fromAirport string) {
+		for len(targets[fromAirport]) > 0 {
+			toAirport := targets[fromAirport][0]
+			targets[fromAirport] = targets[fromAirport][1:]
+			dfs(toAirport)
+		}
+		result = append([]string{fromAirport}, result...)
+	}
+	dfs("JFK")
+	return result
+}
