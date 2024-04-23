@@ -28,6 +28,6 @@ func findItinerary(tickets [][]string) []string {
 		}
 		result = append([]string{fromAirport}, result...)
 	}
-	dfs("JFK")
+	dfs("JFK ")
 	return result
 }
