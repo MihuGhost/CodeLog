@@ -10,7 +10,7 @@ func main() {
 
 }
 
-//递归删除
+// 递归删除
 func deleteNode1(root *TreeNode, key int) *TreeNode {
 	if root == nil {
 		return nil
@@ -41,7 +41,7 @@ func deleteNode1(root *TreeNode, key int) *TreeNode {
 	return root
 }
 
-//迭代
+// 迭代
 func deleteNode(root *TreeNode, key int) *TreeNode {
 	return nil
 }
